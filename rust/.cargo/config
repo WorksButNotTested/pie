@@ -6,7 +6,6 @@ linker = "powerpc-linux-gnu-gcc"
 rustflags = [
     "-Zplt=yes",
     "-Crelocation-model=pic",
-    "-Ctarget-feature=+crt-static",
     "-Clink-arg=-nostartfiles",
     "-Clink-arg=-static-libgcc",
     "-Clink-arg=-lgcc_eh",

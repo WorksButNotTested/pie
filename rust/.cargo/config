@@ -1,0 +1,28 @@
+[build]
+target = "powerpc-unknown-linux-gnu"
+
+[target.powerpc-unknown-linux-gnu]
+linker = "powerpc-linux-gnu-gcc"
+rustflags = [
+    "-Zplt=yes",
+    "-Crelocation-model=pic",
+    "-Ctarget-feature=+crt-static",
+    "-Clink-arg=-nostartfiles",
+    "-Clink-arg=-static-libgcc",
+    "-Clink-arg=-lgcc_eh",
+    "-Clink-arg=-Wl,--gc-sections",
+    "-Clink-arg=-Wl,--build-id=none",
+    "-Clink-arg=-Wl,--script=script.lds",
+]
+runner = "qemu-ppc -L /usr/powerpc-linux-gnu"
+
+[unstable]
+build-std = [
+    "core",
+    "alloc",
+    "std",
+    "proc_macro"
+]
+build-std-features = [
+    "panic_immediate_abort"
+]
